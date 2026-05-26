@@ -54,6 +54,12 @@ ATTACK_REGISTRY: Dict[str, Dict] = {
         "class": "SentenceShuffling",
         "label": "Sentence Shuffling",
     },
+    "phm": {
+        "folder": "premise-hypothesis-mismatch",
+        "module": "premise_hypothesis_mismatch",
+        "class": "PremiseHypothesisMismatch",
+        "label": "Premise-Hypothesis Mismatch",
+    },
 }
 
 
