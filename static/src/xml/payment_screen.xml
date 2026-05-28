@@ -40,8 +40,7 @@
                     <t t-call="vape_pos_order_fields.SummaryBox">
                         <t t-set="title">Canal de Venta</t>
                         <t t-set="icon">fa-globe</t>
-                        <t t-set="value" t-value="currentOrder.vape_channel"/>
-                        <t t-set="trigger" t-value="vapeState.renderTrigger"/>
+                        <t t-set="value" t-value="selectedChannel"/>
                     </t>
                 </t>
 
@@ -49,8 +48,7 @@
                     <t t-call="vape_pos_order_fields.SummaryBox">
                         <t t-set="title">Tipo de Envío</t>
                         <t t-set="icon">fa-truck</t>
-                        <t t-set="value" t-value="currentOrder.vape_shipping_type"/>
-                        <t t-set="trigger" t-value="vapeState.renderTrigger"/>
+                        <t t-set="value" t-value="selectedShippingType"/>
                     </t>
                 </t>
 
