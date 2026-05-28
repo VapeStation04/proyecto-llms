@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="vape_pos_order_fields.CustomGridPopup" owl="1">
+        <Dialog title="props.title" size="'md'">
+            <div class="row g-2 p-3 m-0" style="max-height: 60vh; overflow-y: auto;">
+                <t t-foreach="props.list" t-as="item" t-key="item.id">
+                    <div class="col-12 col-md-6">
+                        
+                        <t t-if="item.isChannel">
+                            <button class="btn btn-lg py-4 w-100 d-flex align-items-center justify-content-center text-center shadow-sm text-white border-0"
+                                    t-attf-style="background-color: {{ item.item.color or '#6c757d' }}; border-radius: 8px; line-height: 1.2;"
+                                    t-on-click="() => this.selectItem(item.item)">
+                                
+                                <t t-if="item.item.custom_icon">
+                                    <img t-attf-src="/web/image/vape.channel/{{ item.item.id }}/custom_icon" 
+                                         class="me-3" 
+                                         style="width: 50px; height: 50px; object-fit: contain;" 
+                                         alt="Logo Canal"/>
+                                </t>
+                                <t t-else="">
+                                    <i t-attf-class="fa {{ item.item.icon or 'fa-cube' }} fa-2x me-3"/>
+                                </t>
+                                
+                                <span class="text-wrap" style="font-size: 24px;">
+                                    <t t-esc="item.label"/>
+                                </span>
+                            </button>
+                        </t>
+                        
+                        <t t-else="">
+                            <button class="btn btn-secondary btn-lg py-5 w-100 d-flex align-items-center justify-content-center text-center shadow-sm"
+                                    style="border-radius: 8px; font-weight: bold; line-height: 1.2;"
+                                    t-on-click="() => this.selectItem(item.item)">
+                                <span class="text-wrap"><t t-esc="item.label"/></span>
+                            </button>
+                        </t>
+
+                    </div>
+                </t> 
+            </div>
+
+            <t t-set-slot="footer">
+                <button class="btn btn-light btn-lg w-100" t-on-click="() => props.close()">
+                    <i class="fa fa-times me-2"/>Cancelar
+                </button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

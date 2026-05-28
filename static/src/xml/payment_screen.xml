@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="vape_pos_order_fields.PaymentScreenMethods" t-inherit="point_of_sale.PaymentScreenMethods" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('paymentmethods')]" position="replace">
+            <div class="paymentmethods flex-column w-100">
+                
+                <t t-call="vape_pos_order_fields.CustomMenuButton">
+                    <t t-set="label">Método de pago</t>
+                    <t t-set="icon">fa-credit-card</t>
+                    <t t-set="onClick" t-value="() => this.openCustomPaymentPopup()"/>
+                </t>
+
+                <t t-if="this.pos.vape_shipping_types and this.pos.vape_shipping_types.length">
+                    <t t-call="vape_pos_order_fields.CustomMenuButton">
+                        <t t-set="label">Tipo de envío</t>
+                        <t t-set="icon">fa-truck</t>
+                        <t t-set="onClick" t-value="() => this.openShippingPopup()"/>
+                    </t>
+                </t>
+
+                <t t-if="this.pos.vape_channels and this.pos.vape_channels.length">
+                    <t t-call="vape_pos_order_fields.CustomMenuButton">
+                        <t t-set="label">Canal de venta</t>
+                        <t t-set="icon">fa-globe</t>
+                        <t t-set="onClick" t-value="() => this.openChannelPopup()"/>
+                    </t>
+                </t>
+
+            </div>
+        </xpath>
+    </t>
+
+    <t t-name="vape_pos_order_fields.PaymentScreenSummary" t-inherit="point_of_sale.PaymentScreenDue" t-inherit-mode="extension" owl="1">
+        <xpath expr="//section[hasclass('paymentlines-container')]" position="after">
+            
+            <div class="d-flex justify-content-between align-items-center mt-2 mb-2 p-3 bg-white border rounded-3 shadow-sm w-100" style="gap: 15px;">
+                
+                <t t-if="this.pos.vape_channels and this.pos.vape_channels.length">
+                    <t t-call="vape_pos_order_fields.SummaryBox">
+                        <t t-set="title">Canal de Venta</t>
+                        <t t-set="icon">fa-globe</t>
+                        <t t-set="value" t-value="currentOrder.vape_channel"/>
+                        <t t-set="trigger" t-value="vapeState.renderTrigger"/>
+                    </t>
+                </t>
+
+                <t t-if="this.pos.vape_shipping_types and this.pos.vape_shipping_types.length">
+                    <t t-call="vape_pos_order_fields.SummaryBox">
+                        <t t-set="title">Tipo de Envío</t>
+                        <t t-set="icon">fa-truck</t>
+                        <t t-set="value" t-value="currentOrder.vape_shipping_type"/>
+                        <t t-set="trigger" t-value="vapeState.renderTrigger"/>
+                    </t>
+                </t>
+
+            </div>
+
+        </xpath>
+    </t>
+
+</templates>

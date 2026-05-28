@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="vape_pos_order_fields.SummaryBox" owl="1">
+        <div class="w-100 flex-grow-1 text-center rounded bg-light p-2 border">
+            <div class="text-muted text-uppercase fw-bold mb-1" style="font-size: 0.75rem; letter-spacing: 1px;">
+                <i t-attf-class="fa #{icon} me-1"/> <t t-esc="title"/>
+            </div>
+            <div class="fw-bolder" t-attf-class="{{ value ? 'text-primary' : 'text-secondary' }}" style="font-size: 1.1rem;">
+                <t t-esc="value ? value.name : 'Ninguno'"/>
+            </div>
+        </div>
+    </t>
+
+</templates>
